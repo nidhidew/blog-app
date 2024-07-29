@@ -1,0 +1,36 @@
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-community-with-docker/
+
+instruction for installing mongose is in the link
+
+after starting the mongose we run the command
+1. use react-blog-db
+2. db.articles.insertMany([{
+    name: 'learn-react',
+    upvotes: 0,
+    comments: [],
+},
+{
+    name: 'learn-node',
+    upvotes: 0,
+    comments: [],
+},
+{
+    name: 'learn-express',
+    upvotes: 0,
+    comments: [],
+}])
+
+3. db.articles.find({}) //to find all data in db
+4. db.articles.find({ name: 'learn-react' }).pretty() //to find only one object data in db
+
+
+when we want to connect the backend to the db for that follow the code in server.js
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
+    const db = client.db('react-blog-db'); //we gave db name, it can be anything
+
+after that start the server using node serve.js or npm run dev if nodemon is installed
+
+mongose also should be in running
+
+next open postman and try to GET for http://localhost:8000/api/articles/mongodb. here you will get data stored in db. if data is not present then 404 error.
